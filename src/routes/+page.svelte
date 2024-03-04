@@ -1,7 +1,7 @@
 <script>
     import SongWrapper from "../lib/components/SongWrapper.svelte";
     import SongListScrollButton from "../lib/components/SongListScrollButton.svelte";
-
+    import SendButton from "../lib/components/SendButton.svelte";
     let songs = [{
         id: 1,
         name: "Wake Up",
@@ -55,7 +55,7 @@
 <h2>Share recently Spotify songs with anyone.</h2>
 <div class = box>
     <div class = "arrow-wrapper">
-        <SongListScrollButton direction="LEFT" />
+        <SongListScrollButton direction="LEFT" on:click = {handleScrollButtonClick}/>
     </div>
     <div class = "song-list">
         {#each songs.slice(startIndex,startIndex + 4) as song (song.id)}
@@ -63,8 +63,11 @@
         {/each}
     </div>
     <div class = "arrow-wrapper">
-        <SongListScrollButton direction="RIGHT" />
+        <SongListScrollButton direction="RIGHT" on:click = {handleScrollButtonClick} />
     </div>
+</div>
+<div class = send-button-wrapper>
+    <SendButton />
 </div>
 
 <style>
@@ -92,6 +95,13 @@
         margin: auto;
         text-align: center;;
         background-color: rgb(218, 218, 218);
+    }
+
+    .send-button-wrapper {
+        display: flex;
+        margin: 0, auto;
+        justify-content: center;
+        margin-top: 50px;
     }
 </style>
 

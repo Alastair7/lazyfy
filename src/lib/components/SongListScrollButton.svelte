@@ -5,7 +5,9 @@
     const dispatch = createEventDispatcher();
 
     function handleClick() {
-        dispatch('click', direction);
+        dispatch('click', {
+            direction: direction
+        });
     }
 </script>
 <button type="button" class="song-list-button" on:click={handleClick}>
