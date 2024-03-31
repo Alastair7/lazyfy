@@ -38,15 +38,29 @@
     author: "EDEN"
     }];
 
-    let startIndex = 0;
+    let maxElements = 3;
+    let fromIndex = 0;
+    let toIndex = maxElements;
 
     function handleScrollButtonClick(event) {
         const {direction} = event.detail;
 
         if (direction === 'RIGHT') {
-            startIndex = Math.min(startIndex + 4, songs.length -4);
+            fromIndex += maxElements;
+            toIndex = fromIndex + 3;
+
+            if (fromIndex > songs.length && toIndex > songs.length) {
+                fromIndex = songs.length - 1;
+                toIndex = songs.length;
+            }
         } else {
-            startIndex = Math.max(startIndex - 4, 0);
+            toIndex = fromIndex;
+            fromIndex -= maxElements;
+
+            if (fromIndex <= 0 && toIndex <= 0) {
+                fromIndex = 0;
+                toIndex = maxElements;
+            }
         }
     }
 </script>
@@ -58,7 +72,7 @@
         <SongListScrollButton direction="LEFT" on:click = {handleScrollButtonClick}/>
     </div>
     <div class = "song-list">
-        {#each songs.slice(startIndex,startIndex + 4) as song (song.id)}
+        {#each songs.slice(fromIndex,toIndex) as song (song.id)}
         <SongWrapper {...song} />
         {/each}
     </div>
