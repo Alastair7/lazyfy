@@ -66,7 +66,7 @@
 </script>
 
 <h1>LAZYFY</h1>
-<h2>Share recently Spotify songs with anyone.</h2>
+<h2>Share recently liked songs from Spotify with anyone.</h2>
 <div class = box>
     <div class = "arrow-wrapper">
         <SongListScrollButton direction="LEFT" on:click = {handleScrollButtonClick}/>
